@@ -11,6 +11,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
+UIKit
+
 ## Installation
 
 PTSDK is available through [CocoaPods](https://cocoapods.org). To install
@@ -19,6 +21,9 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'PTSDK'
 ```
+## Dependency SDK 
+[Moya](https://github.com/Moya/Moya)
+[SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 
 ## Author
 
