@@ -1,0 +1,6 @@
+framework module PTSDK {
+  umbrella header "PTSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_PTSDK_Tests {
+  umbrella header "Pods-PTSDK_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
