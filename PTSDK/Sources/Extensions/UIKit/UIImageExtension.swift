@@ -36,7 +36,8 @@ public extension UIImage {
         var path:UIBezierPath
         let width = min(self.size.width, self.size.height)
         if let radius = radius {
-            path = UIBezierPath(roundedRect:rect ?? CGRect(x: 0, y: 0, width: width, height: width), cornerRadius: radius)
+            path = UIBezierPath(roundedRect: rect ?? CGRect(x: 0, y: 0, width: width, height: width),
+                                cornerRadius: radius)
             path.addClip()
             draw(in: rect ?? CGRect(x: 0, y: 0, width: width, height: width))
         } else {

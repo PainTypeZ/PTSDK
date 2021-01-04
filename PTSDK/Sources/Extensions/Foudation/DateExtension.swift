@@ -10,29 +10,29 @@ import Foundation
 
 /// 星期x枚举
 public enum WeekDay: Int {
-    case Sunday = 1
-    case Monday
-    case Tuesday
-    case WednesDay
-    case Thursday
-    case Friday
-    case SaturyDay
+    case sunday = 1
+    case monday
+    case tuesday
+    case wednesDay
+    case thursday
+    case friday
+    case saturyDay
     /// 获取中文名
     var chsName: String {
         switch self {
-        case .Sunday:
+        case .sunday:
             return "星期日"
-        case .Monday:
+        case .monday:
             return "星期一"
-        case .Tuesday:
+        case .tuesday:
             return "星期二"
-        case .WednesDay:
+        case .wednesDay:
             return "星期三"
-        case .Thursday:
+        case .thursday:
             return "星期四"
-        case .Friday:
+        case .friday:
             return "星期五"
-        case .SaturyDay:
+        case .saturyDay:
             return "星期六"
         }
     }
@@ -43,34 +43,31 @@ public extension Date {
     var historyString: String {
         let dateFormatter = DateFormatter()
         var dateString = ""
-        //判断时间节点
-        if isToday
-        {
+        // 判断时间节点
+        if isToday {
             let components = deltaWithNow
-            //今天内一个小时以上 显示"xx小时之前"
+            // 今天内一个小时以上 显示"xx小时之前"
             if abs(components.hour ?? 0) >= 1 {
                 dateString = "\(abs(components.hour!))" + "小时前"
-            }
-            else if abs(components.minute ?? 0) >= 1 {
-                //一个小时以内 显示"xx分钟之前"
+            } else if abs(components.minute ?? 0) >= 1 {
+                // 一个小时以内 显示"xx分钟之前"
                 dateString = "\(abs(components.minute!))" + "分钟前"
-            }
-            else {
-                //一分钟以内 显示"刚刚"
+            } else {
+                // 一分钟以内 显示"刚刚"
                 dateString = "刚刚"
             }
         } else {
-            //昨天 显示"昨天 mm:ss"
+            // 昨天 显示"昨天 mm:ss"
             if isYestoday {
                 dateFormatter.dateFormat = "HH:mm"
                 dateString = "昨天" + " " + dateFormatter.string(from: self)
             }
-            //今年但是不是昨天 显示 MM-dd
+            // 今年但是不是昨天 显示 MM-dd
             if !isYestoday {
                 dateFormatter.dateFormat = "MM-dd HH:mm"
                 dateString = dateFormatter.string(from: self)
             }
-            //今年以前 yyyy-MM-dd
+            // 今年以前 yyyy-MM-dd
             if !isThisYear {
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
                 dateString = dateFormatter.string(from: self)
@@ -112,7 +109,7 @@ public extension Date {
         return result
     }
     /// 获取与当前时间的差距
-    var deltaWithNow: DateComponents{
+    var deltaWithNow: DateComponents {
         let calendar = Calendar.current
         let cmps = calendar.dateComponents([.hour,.minute,.second], from: self, to: Date())
         return cmps
@@ -179,7 +176,7 @@ public extension Date {
     }
     /// Date To String: 02
     var dayString: String {
-        return DateFormatter.dd.string(from: self)
+        return DateFormatter.ddOnly.string(from: self)
     }
     /// Date To String: 1970-01-01 13:20:33
     var string: String {
@@ -234,8 +231,8 @@ public extension Date {
 }
 
 // MARK: - DateFormatter Extension
-public extension DateFormatter{
-    static var dateFormatter: DateFormatter{
+public extension DateFormatter {
+    static var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.calendar = Calendar(identifier: .gregorian)
         formatter.locale = Locale(identifier: "zh-CN")
@@ -291,7 +288,7 @@ public extension DateFormatter{
         return dateFormatter
     }
     
-    static var dd: DateFormatter {
+    static var ddOnly: DateFormatter {
         dateFormatter.dateFormat = "dd"
         return dateFormatter
     }

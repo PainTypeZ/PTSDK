@@ -13,7 +13,7 @@ public extension Dictionary {
     var jsonString: String {
         var result:String = ""
         do {
-            //如果设置options为JSONSerialization.WritingOptions.prettyPrinted，则打印格式更好阅读
+            // 如果设置options为JSONSerialization.WritingOptions.prettyPrinted，则打印格式更好阅读
             let jsonData = try JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
             if let json = String(data: jsonData, encoding: .utf8) {
                 result = json

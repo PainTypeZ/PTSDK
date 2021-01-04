@@ -21,7 +21,10 @@ public struct PTSwiftTool {
         
         UIView.animate(withDuration: 1) {
             window?.alpha = 0
-            window?.frame = CGRect(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2, width: 0, height: 0)
+            window?.frame = CGRect(x: UIScreen.main.bounds.width / 2,
+                                   y: UIScreen.main.bounds.height / 2,
+                                   width: 0,
+                                   height: 0)
         } completion: { _ in
             exit(0)
         }

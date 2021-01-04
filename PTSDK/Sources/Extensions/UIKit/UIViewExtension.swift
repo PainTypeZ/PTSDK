@@ -39,29 +39,53 @@ public enum BorderDirection {
 public extension UIView {
     /// 设置与父视图四边相等的约束
     private func equalToSuperView() {
-        let leading = NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: superview, attribute: .leading, multiplier: 1.0, constant: 0)
-        let trailing = NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: superview, attribute: .trailing, multiplier: 1.0, constant: 0)
-        let top = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: superview, attribute: .top, multiplier: 1.0, constant: 0)
-        let bottom = NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: superview, attribute: .bottom, multiplier: 1.0, constant: 0)
+        let leading = NSLayoutConstraint(item: self,
+                                         attribute: .leading,
+                                         relatedBy: .equal,
+                                         toItem: superview,
+                                         attribute: .leading,
+                                         multiplier: 1.0,
+                                         constant: 0)
+        let trailing = NSLayoutConstraint(item: self,
+                                          attribute: .trailing,
+                                          relatedBy: .equal,
+                                          toItem: superview,
+                                          attribute: .trailing,
+                                          multiplier: 1.0,
+                                          constant: 0)
+        let top = NSLayoutConstraint(item: self,
+                                     attribute: .top,
+                                     relatedBy: .equal,
+                                     toItem: superview,
+                                     attribute: .top,
+                                     multiplier: 1.0,
+                                     constant: 0)
+        let bottom = NSLayoutConstraint(item: self,
+                                        attribute: .bottom,
+                                        relatedBy: .equal,
+                                        toItem: superview,
+                                        attribute: .bottom,
+                                        multiplier: 1.0,
+                                        constant: 0)
         addConstraints([leading, trailing, top, bottom])
         superview?.updateConstraintsIfNeeded()
     }
     /// 添加模糊效果（UIVisualEffectView）
     func addBlurEffect() {
-        //创建一个模糊效果
+        // 创建一个模糊效果
         let blurEffect = UIBlurEffect(style: .light)
-        //创建一个承载模糊效果的视图
+        // 创建一个承载模糊效果的视图
         let blurView = UIVisualEffectView(effect: blurEffect)
         addSubview(blurView)
         blurView.equalToSuperView()
     }
     /// 添加模糊效果（UIVibrancyEffect）
     func addBlurEffectWithUIVibrancyEffect() {
-        //创建一个模糊效果
+        // 创建一个模糊效果
         let blurEffect = UIBlurEffect(style: .light)
-        //创建一个承载模糊效果的视图
+        // 创建一个承载模糊效果的视图
         let blurView = UIVisualEffectView(effect: blurEffect)
-        //创建并添加vibrancy视图
+        // 创建并添加vibrancy视图
         let vibrancyEffect = UIVibrancyEffect(blurEffect: blurEffect)
         let vibrancyView = UIVisualEffectView(effect:vibrancyEffect)
 
@@ -85,31 +109,11 @@ public extension UIView {
         }
         // 字体大小, 无法兼容attributeString
         if types.contains(.fontSize) {
-            if let label = self as? UILabel {
-                if label.superview?.isKind(of: UIButton.self) == false {
-                    label.font = label.font.withSize(label.font.pointSize * scaleValue)
-                }
-            } else if let textField = self as? UITextField {
-                if var fontSize = textField.font?.pointSize {
-                    fontSize *= scaleValue
-                    textField.font = textField.font?.withSize(fontSize)
-                }
-            } else if let button = self as? UIButton {
-                if var fontSize = button.titleLabel?.font.pointSize {
-                    fontSize *= scaleValue
-                    button.titleLabel?.font = button.titleLabel?.font?.withSize(fontSize)
-                }
-            } else if let textView = self as? UITextView {
-                if var fontSize = textView.font?.pointSize {
-                    fontSize *= scaleValue
-                    textView.font = textView.font?.withSize(fontSize)
-                }
-            }
+            handleAutoScaleFontSize(scaleValue: scaleValue)
         }
-        
         // 圆角
         if types.contains(.cornerRadius), layer.cornerRadius != 0 {
-            layer.cornerRadius = layer.cornerRadius * scaleValue
+            layer.cornerRadius *= scaleValue
         }
         
         if isScaleSubViews {
@@ -119,6 +123,28 @@ public extension UIView {
             }
         }
         
+    }
+    private func handleAutoScaleFontSize(scaleValue: CGFloat) {
+        if let label = self as? UILabel {
+            if label.superview?.isKind(of: UIButton.self) == false {
+                label.font = label.font.withSize(label.font.pointSize * scaleValue)
+            }
+        } else if let textField = self as? UITextField {
+            if var fontSize = textField.font?.pointSize {
+                fontSize *= scaleValue
+                textField.font = textField.font?.withSize(fontSize)
+            }
+        } else if let button = self as? UIButton {
+            if var fontSize = button.titleLabel?.font.pointSize {
+                fontSize *= scaleValue
+                button.titleLabel?.font = button.titleLabel?.font?.withSize(fontSize)
+            }
+        } else if let textView = self as? UITextView {
+            if var fontSize = textView.font?.pointSize {
+                fontSize *= scaleValue
+                textView.font = textView.font?.withSize(fontSize)
+            }
+        }
     }
     /// 当前view对象是否是例外的视图
     func isExceptViewClass(_ classArray: [AnyObject]?) -> Bool {
@@ -159,7 +185,7 @@ public extension UIView {
         return image!
     }
     /// 画线
-    private func drawBorder(rect: CGRect,color: UIColor){
+    private func drawBorder(rect: CGRect,color: UIColor) {
         let line = UIBezierPath(rect: rect)
         let lineShape = CAShapeLayer()
         lineShape.path = line.cgPath
@@ -177,13 +203,25 @@ public extension UIView {
         var rect: CGRect
         switch direction {
         case .top:
-            rect = CGRect(x: 0, y: 0, width: width ?? frame.size.width, height: height ?? 1.0)
+            rect = CGRect(x: 0,
+                          y: 0,
+                          width: width ?? frame.size.width,
+                          height: height ?? 1.0)
         case .bottom:
-            rect = CGRect(x: 0, y: frame.size.height - (height ?? 1.0), width: width ?? frame.size.width, height: height ?? 1.0)
+            rect = CGRect(x: 0,
+                          y: frame.size.height - (height ?? 1.0),
+                          width: width ?? frame.size.width,
+                          height: height ?? 1.0)
         case .left:
-            rect = CGRect(x: 0, y: 0, width: width ?? 1.0, height: height ?? frame.size.height)
+            rect = CGRect(x: 0,
+                          y: 0,
+                          width: width ?? 1.0,
+                          height: height ?? frame.size.height)
         case .right:
-            rect = CGRect(x: frame.size.width - (width ?? 1.0), y: 0, width: width ?? 1.0, height: height ?? frame.size.height)
+            rect = CGRect(x: frame.size.width - (width ?? 1.0),
+                          y: 0,
+                          width: width ?? 1.0,
+                          height: height ?? frame.size.height)
         }
         drawBorder(rect: rect, color: borderColor)
     }

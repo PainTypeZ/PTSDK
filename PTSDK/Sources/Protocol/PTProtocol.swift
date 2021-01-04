@@ -93,7 +93,8 @@ extension UICollectionView: PTRegisterCell {
 
 }
 
-/// 在viewController的viewWillAppear调用addKeyboardObserve，viewWillDisappear调用removeKeyboardObserve，键盘观察，可以尽量使用静态tableView来减少此协议的使用率。。。。。
+/// 在viewController的viewWillAppear调用addKeyboardObserve，viewWillDisappear调用removeKeyboardObserve，
+/// 键盘观察，可以尽量使用静态tableView来减少此协议的使用率。。。。。
 public protocol PTKeyboardObserve: UIViewController {
     // 输入视图所在滚动的引用
     var inputScrollView: UIScrollView? { get set }

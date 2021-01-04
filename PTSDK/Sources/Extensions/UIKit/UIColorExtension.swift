@@ -6,7 +6,12 @@
 //
 
 import Foundation
-
+public struct RGBA {
+    var red: CGFloat
+    var green: CGFloat
+    var blue: CGFloat
+    var alpha: CGFloat
+}
 public extension UIColor {
     /// 十六进制颜色便利构造方法
     /// - Parameters:
@@ -39,12 +44,12 @@ public extension UIColor {
     }
 
     /// 获取RGBA
-    var rgba: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+    var rgba: RGBA {
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
         var alpha: CGFloat = 0
         getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        return (red * 255, green * 255, blue * 255, alpha)
+        return RGBA(red: red * 255, green: green * 255, blue: blue * 255, alpha: alpha)
     }
 }

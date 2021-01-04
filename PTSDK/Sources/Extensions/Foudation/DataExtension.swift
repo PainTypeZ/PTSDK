@@ -23,19 +23,16 @@ public extension Data {
 // MARK: - NSData Extension
 public extension NSData {
     /// 用于支持 string.MD5()
-    var hexedString: String
-    {
+    var hexedString: String {
         var string = String()
         let unsafePointer = bytes.assumingMemoryBound(to: UInt8.self)
-        for pointer in UnsafeBufferPointer<UInt8>(start:unsafePointer, count: length)
-        {
+        for pointer in UnsafeBufferPointer<UInt8>(start:unsafePointer, count: length) {
             string += Int(pointer).hexedString
         }
         return string
     }
     /// 用于支持 string.MD5()
-    var MD5: NSData
-    {
+    var MD5: NSData {
         let result = NSMutableData(length: Int(CC_MD5_DIGEST_LENGTH))!
         let unsafePointer = result.mutableBytes.assumingMemoryBound(to: UInt8.self)
         CC_MD5(bytes, CC_LONG(length), UnsafeMutablePointer<UInt8>(unsafePointer))

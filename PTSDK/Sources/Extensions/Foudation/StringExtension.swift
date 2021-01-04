@@ -50,7 +50,10 @@ public extension String {
         } else {
             maxWidth = CGFloat(MAXFLOAT)
         }
-        let size = NSString(string: self).boundingRect(with: CGSize(width: maxWidth, height: height), options: .usesLineFragmentOrigin, attributes: attributrs, context: nil).size
+        let size = NSString(string: self).boundingRect(with: CGSize(width: maxWidth, height: height),
+                                                       options: .usesLineFragmentOrigin,
+                                                       attributes: attributrs,
+                                                       context: nil).size
         return size.width
     }
     /**
@@ -68,7 +71,10 @@ public extension String {
         } else {
             maxHeight = CGFloat(MAXFLOAT)
         }
-        let size = NSString(string: self).boundingRect(with: CGSize(width: width, height: maxHeight), options: .usesLineFragmentOrigin, attributes: attributrs, context: nil).size
+        let size = NSString(string: self).boundingRect(with: CGSize(width: width, height: maxHeight),
+                                                       options: .usesLineFragmentOrigin,
+                                                       attributes: attributrs,
+                                                       context: nil).size
         return size.height
     }
     // Convert To Int/Double/CGFloat/Float
@@ -168,8 +174,7 @@ public extension String {
         let regexCode = NSPredicate(format: "SELF MATCHES %@", code)
         if regexCode.evaluate(with: self) == true {
             return true
-        }else
-        {
+        } else {
             return false
         }
     }
@@ -185,7 +190,7 @@ public extension String {
     }
     // validate mobilePhoneNumber
     func isPhoneNumber() -> Bool {
-        if self.count == 0 {
+        guard !isEmpty else {
             return false
         }
         //        let mobile = "^((13[0-9])|(15[^4])|(166)|(17[0-8])|(18[0-9])|(19[8-9])|(147,145))\\d{8}$"
@@ -277,12 +282,13 @@ public extension String {
     }
     
     // JSON字符串转字典
-    var dictionary: Dictionary<String, Any> {
-        var dict: Dictionary<String, Any>
+    var dictionary: [String: Any] {
+        var dict: [String: Any]
         if let data = data(using: String.Encoding.utf8) {
             do {
-                let object = try JSONSerialization.jsonObject(with: data, options: [JSONSerialization.ReadingOptions.init(rawValue: 0)])
-                if let dictObject = object as? Dictionary<String, Any> {
+                let options = JSONSerialization.ReadingOptions.init(rawValue: 0)
+                let object = try JSONSerialization.jsonObject(with: data, options: options)
+                if let dictObject = object as? [String: Any] {
                     dict = dictObject
                 } else {
                     debugPrint("JSON字符串转字典失败")
