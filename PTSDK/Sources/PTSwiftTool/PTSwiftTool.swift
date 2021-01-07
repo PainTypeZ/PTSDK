@@ -7,11 +7,26 @@
 
 import Foundation
 
+public protocol StoryBoardName {
+    var fileName: String { get set }
+}
+
+extension UIViewController: PTNamable {
+
+}
+
 public struct PTSwiftTool {
     /// 单例
     static var shared = Self()
     private init() {
 
+    }
+    /// 获取故事板VC
+    /// - Parameter stroyBoard: 遵守StoryBoardName协议的对象
+    /// - Returns: 控制器类型
+    func creatViewControllerFrom<T: UIViewController>(_ storyboard: StoryBoardName) -> T? {
+        let storyboard = UIStoryboard(name: storyboard.fileName, bundle: .main)
+        return storyboard.instantiateViewController(withIdentifier: T.typeName) as? T
     }
     /// 退出App
     func exitApp() {

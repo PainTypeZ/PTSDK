@@ -7,13 +7,6 @@
 
 import UIKit
 
-public protocol StoryBoardName {
-    var fileName: String { get set }
-}
-
-extension UIViewController: PTNamable {
-
-}
 // MARK: - Properties
 public extension UIViewController {
     /// 是否可见
@@ -24,13 +17,6 @@ public extension UIViewController {
 }
 // MARK: - Methods
 public extension UIViewController {
-    /// 获取故事板VC
-    /// - Parameter stroyBoard: 遵守StoryBoardName协议的对象
-    /// - Returns: 控制器类型
-    private func getViewControllerFrom<T: UIViewController>(_ storyboard: StoryBoardName) -> T? {
-        let storyboard = UIStoryboard(name: storyboard.fileName, bundle: .main)
-        return storyboard.instantiateViewController(withIdentifier: T.typeName) as? T
-    }
     /// 进入某个VC
     /// - Parameters:
     ///   - target: 目标控制器
