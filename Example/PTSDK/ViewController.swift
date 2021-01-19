@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PTSDK
 
 class ViewController: UIViewController {
 

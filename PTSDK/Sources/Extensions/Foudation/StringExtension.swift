@@ -14,6 +14,7 @@ public extension String {
      
      - parameter separation: 分割字符串
      */
+    @available(*, deprecated, message: "Please use prefix(_ separation: String) -> String instead")
     func getPrefix(_ separation: String) -> String {
         guard let dotIndex = range(of: separation) else {
             return ""
@@ -27,7 +28,34 @@ public extension String {
      
      - parameter separation: 分割字符串
      */
+    @available(*, deprecated, message: "Please use suffix(_ separation: String) -> String instead")
     func getSuffix(_ separation: String) -> String {
+        guard let dotIndex = range(of: separation) else {
+            return "0"
+        }
+        let suffix = String(self.suffix(from: dotIndex.upperBound))
+        let result = suffix.trimmingCharacters(in: .whitespacesAndNewlines)// 处理首尾空格
+        return result
+    }
+    /**
+     从xxx分割后的前半部分
+     
+     - parameter separation: 分割字符串
+     */
+    func prefix(_ separation: String) -> String {
+        guard let dotIndex = range(of: separation) else {
+            return ""
+        }
+        let prefix = String(self.prefix(upTo: dotIndex.lowerBound))
+        let result = prefix.trimmingCharacters(in: .whitespacesAndNewlines)// 处理首尾空格
+        return result
+    }
+    /**
+     从xxx分割后的后半部分
+     
+     - parameter separation: 分割字符串
+     */
+    func suffix(_ separation: String) -> String {
         guard let dotIndex = range(of: separation) else {
             return "0"
         }
