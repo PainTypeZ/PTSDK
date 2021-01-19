@@ -15,6 +15,8 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		BA3E22BC25B66E6700776D48 /* PTSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3E22BA25B66E6700776D48 /* PTSelectable.swift */; };
+		BA3E22BD25B66E6700776D48 /* SelectItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3E22BB25B66E6700776D48 /* SelectItemButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		62DDC1FA9CBAD5DAF6635C6C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		64219D6D29698A37E03248DE /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A69E1356183CBDDB68E5D11B /* Pods-PTSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PTSDK_Tests.release.xcconfig"; path = "Target Support Files/Pods-PTSDK_Tests/Pods-PTSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		BA3E22BA25B66E6700776D48 /* PTSelectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTSelectable.swift; sourceTree = "<group>"; };
+		BA3E22BB25B66E6700776D48 /* SelectItemButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectItemButton.swift; sourceTree = "<group>"; };
 		BA5DFF81259AD16500872AB3 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		BA5DFF82259AD1CD00872AB3 /* NSLayoutConstraintExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtension.swift; sourceTree = "<group>"; };
 		BA5DFF85259AD21100872AB3 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -195,6 +199,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BA3E22B925B66E6700776D48 /* PTSelectable */ = {
+			isa = PBXGroup;
+			children = (
+				BA3E22BA25B66E6700776D48 /* PTSelectable.swift */,
+				BA3E22BB25B66E6700776D48 /* SelectItemButton.swift */,
+			);
+			path = PTSelectable;
+			sourceTree = "<group>";
+		};
 		BA5DFF8B259AD61500872AB3 /* Foudation */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +252,7 @@
 		BA986176259968BC0091CD0C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				BA3E22B925B66E6700776D48 /* PTSelectable */,
 				BA986178259968BC0091CD0C /* Network */,
 				BA98617A259968BC0091CD0C /* Protocol */,
 				BA98617C259968BC0091CD0C /* Extensions */,
@@ -486,8 +500,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA3E22BD25B66E6700776D48 /* SelectItemButton.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				BA3E22BC25B66E6700776D48 /* PTSelectable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
