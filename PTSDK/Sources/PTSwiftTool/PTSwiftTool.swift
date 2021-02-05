@@ -17,19 +17,19 @@ extension UIViewController: PTNamable {
 
 public struct PTSwiftTool {
     /// 单例
-    static var shared = Self()
+    public static var shared = Self()
     private init() {
 
     }
     /// 获取故事板VC
     /// - Parameter stroyBoard: 遵守StoryBoardName协议的对象
     /// - Returns: 控制器类型
-    func creatViewControllerFrom<T: UIViewController>(_ storyboard: StoryBoardName) -> T? {
+    public func creatViewControllerFrom<T: UIViewController>(_ storyboard: StoryBoardName) -> T? {
         let storyboard = UIStoryboard(name: storyboard.fileName, bundle: .main)
         return storyboard.instantiateViewController(withIdentifier: T.typeName) as? T
     }
     /// 退出App
-    func exitApp() {
+    public func exitApp() {
         guard let window = UIApplication.shared.delegate?.window else {
             exit(0)
         }
@@ -45,7 +45,7 @@ public struct PTSwiftTool {
         }
     }
     /// 获取app缓存大小
-    func getCacheSize() -> String {
+    public func getCacheSize() -> String {
         let domain = FileManager.SearchPathDirectory.cachesDirectory
         let mask = FileManager.SearchPathDomainMask.userDomainMask
         if let cachePath = NSSearchPathForDirectoriesInDomains(domain, mask, true).first {
@@ -75,7 +75,7 @@ public struct PTSwiftTool {
         }
     }
     /// 清除app缓存
-    func clearAllCache() {
+    public func clearAllCache() {
         let domain = FileManager.SearchPathDirectory.cachesDirectory
         let mask = FileManager.SearchPathDomainMask.userDomainMask
         if let cachePath = NSSearchPathForDirectoriesInDomains(domain, mask, true).first {
@@ -98,7 +98,7 @@ public struct PTSwiftTool {
         }
     }
     /// 根据window获取顶层控制器
-    func getCurrentViewController() -> (UIViewController?) {
+    public func getCurrentViewController() -> (UIViewController?) {
         var window = UIApplication.shared.keyWindow
         // 是否为当前显示的window
         if window?.windowLevel != UIWindow.Level.normal {
@@ -111,7 +111,7 @@ public struct PTSwiftTool {
         return getCurrentViewController(currentViewController: rootVC)
     }
     /// 根据控制器获取顶层控制器
-    func getCurrentViewController(currentViewController: UIViewController?) -> UIViewController? {
+    public func getCurrentViewController(currentViewController: UIViewController?) -> UIViewController? {
         if currentViewController == nil {
             print("PTSwiftTool： 找不到顶层控制器")
             return nil
@@ -134,7 +134,7 @@ public struct PTSwiftTool {
         }
     }
     /// 拨打电话
-    func call(phoneNumber: String) -> Bool {
+    public func call(phoneNumber: String) -> Bool {
         let phoneURL = "tel://" + phoneNumber
         guard let url = URL(string: phoneURL) else {
             return false

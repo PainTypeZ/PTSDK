@@ -173,7 +173,7 @@ public extension PTRegisterObserver {
     func registerToDefaultNotificationCenter<T: PTNotificationName>(notificationName: T,
                                                                     selector: Selector,
                                                                     object: AnyObject? = nil) {
-        let name = Notification.Name(notificationName.notificationName)
+        let name = notificationName.notificationName
         NotificationCenter.default.addObserver(self, selector: selector, name: name, object: object)
     }
     func removeObserverFromDefaultNotificationCenter() {
@@ -197,11 +197,13 @@ public extension PTPostNotification {
     func postNotificationThroughDefaultCenter<T: PTNotificationName>(notificationName: T,
                                                                      object: Any? = nil,
                                                                      userInfo: [String: Any]? = nil) {
-        let name = NSNotification.Name(notificationName.notificationName)
-        NotificationCenter.default.post(name: name, object: object, userInfo: userInfo)
+        NotificationCenter.default.post(name: notificationName.notificationName, object: object, userInfo: userInfo)
     }
 }
 /// 通知名称组件
 public protocol PTNotificationName: PTNamable {
-    var notificationName: String { get }
+    // 通知名字符串
+    var notificationNameString: String { get }
+    // 通知名
+    var notificationName: Notification.Name { get }
 }
